@@ -1,6 +1,6 @@
 # The Parsaloi LRUCache Algorithm implementation (least-recently-used-cache-algorithm)
 
-- This is a concurrent implementation of the Least Recently Used (LRU) cache algorithm written in Java
+- This is a Parsa's implementation of the Least Recently Used (LRU) cache algorithm written in Java that supports further concurrent implementations of the LRU Cache algorithm
 
 - With this implementation order of items in the cache does not matter 😜
 
