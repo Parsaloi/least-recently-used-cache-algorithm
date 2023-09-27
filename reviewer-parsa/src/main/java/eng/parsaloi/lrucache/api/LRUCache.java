@@ -1,4 +1,4 @@
-package eng.parsaloi.lrucache;
+package eng.parsaloi.lrucache.api;
 
 import java.util.Collections;
 import java.util.List;
@@ -7,10 +7,18 @@ import java.util.LinkedList;
 import java.util.Map;
 
 /**
- * @author parsaloi35@gmail.com
- * @version 1.0.3 - 9/27/23
+ * @version 1.0.3  2023-09-27
+ * @author parsaloi35@gmail.com Parsaloi Nakuoh
  */
 
+/**
+ * A {@code LRUCache} object represents a least recently used (LRU) cache
+ * An LRU Cache is a data structure that stores a fixed number of items
+ * If a new item is added to the cache when it is full, the least recently used item is removed to allow the new item to be stored
+ *
+ * @param <K> The type of the cache keys
+ * @param <V> The type of the cache values
+ */
 public class LRUCache<K, V> {
 
     private final int capacity;
@@ -23,7 +31,12 @@ public class LRUCache<K, V> {
         this.cacheList = Collections.synchronizedList(new LinkedList<CacheItem<K, V>>());
     }
 
-    // retrive a cache item
+    /**
+     * Retirives a cache item
+     *
+     * @param key The key of the cache item to retrieve
+     * @return The cache item, or 'null' if the item is not found in the cache
+     */
     public synchronized V get(K key) {
         CacheItem<K, V> item = cacheMap.get(key);
 
@@ -35,7 +48,12 @@ public class LRUCache<K, V> {
         return item.getValue();
     }
 
-    // add a cache item
+    /**
+     * Adds a cache item to the cache
+     *
+     * @param key The key of the cache item to add
+     * @param value The value of the cache item to add
+     */
     public synchronized void put(K key, V value) {
         CacheItem<K, V> item = cacheMap.get(key);
 
@@ -48,7 +66,6 @@ public class LRUCache<K, V> {
             if (cacheList.size() > capacity) {
                 // if cache is full, remove the least recently used item
                 CacheItem<K, V> eldestItem = findOldestCacheItem();
-                // revisit to understand how this removal happens??
                 cacheMap.remove(eldestItem.getKey());
                 cacheList.remove(eldestItem);
             }
@@ -61,7 +78,11 @@ public class LRUCache<K, V> {
         }
     }
 
-    // find the oldest cache item
+    /**
+     * Finds the oldest item
+     *
+     * @return The oldest cache item
+     */
     private synchronized CacheItem<K, V> findOldestCacheItem() {
         CacheItem<K, V> eldestItem = cacheList.get(0);
         for (CacheItem<K, V> item : cacheList) {
@@ -129,6 +150,9 @@ public class LRUCache<K, V> {
                 '}';
         }
     }
+
+    // Basic unit test (ignore this block)
+    /*
     public static void main (String [] args) {
         // Create a cache with a capacity of 3
         LRUCache<String, String> cache = new LRUCache<>(3);
@@ -160,4 +184,5 @@ public class LRUCache<K, V> {
 	// print the cache contents to verify
 	System.out.println("Cache contents after adding a 5th item: " + cache.getCacheList());
     }
+    */
 }
