@@ -1,0 +1,23 @@
+
+== Publishing packages to Maven Repository
+
+- Compile assets:  
+
+```bash
+javac -d classes src/main/java/eng/parsaloi/lrucache/api/LRUCache.java
+```
+
+- Build `Jar` artifacts:  
+
+```bash
+jar cvf parsa-lrucache-api.jar -C classes .
+added manifest
+adding: eng/(in = 0) (out= 0)(stored 0%)
+adding: eng/parsaloi/(in = 0) (out= 0)(stored 0%)
+adding: eng/parsaloi/lrucache/(in = 0) (out= 0)(stored 0%)
+adding: eng/parsaloi/lrucache/api/(in = 0) (out= 0)(stored 0%)
+adding: eng/parsaloi/lrucache/api/LRUCache$CacheItem.class(in = 1642) (out= 796)(deflated 51%)
+adding: eng/parsaloi/lrucache/api/LRUCache.class(in = 2802) (out= 1395)(deflated 50%)
+```
+
+
